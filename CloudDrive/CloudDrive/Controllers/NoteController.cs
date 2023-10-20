@@ -1,4 +1,5 @@
-﻿using Application.Note.Services;
+﻿using Application.Foundations;
+using Application.Note.Services;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +10,12 @@ namespace CloudDrive.Controllers;
 public class NoteController : ControllerBase
 {
     private readonly INoteService _noteService;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public NoteController(INoteService noteService)
+    public NoteController(INoteService noteService, IUnitOfWork unitOfWork)
     {
         _noteService = noteService;
-    }
-
-    [HttpGet("{id}")]
-    public string GetUserName(int id)
-    {
-        return "User " + id;
+        _unitOfWork = unitOfWork;
     }
 
     [HttpPost]
@@ -33,6 +30,7 @@ public class NoteController : ControllerBase
         {
             return BadRequest();
         }
+        _unitOfWork.Commit();
 
         return Ok();
     }
@@ -47,7 +45,40 @@ public class NoteController : ControllerBase
         }
         catch (Exception exception)
         {
-            throw new FileNotFoundException();
+            throw new Exception("Can't be found");
         }
+    }
+
+    [HttpDelete]
+    [Route("delete/{id}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        try
+        {
+            await _noteService.DeleteNote(id);
+        }
+        catch (Exception exception)
+        {
+            throw new Exception("Can't be deleted");
+        }
+        _unitOfWork.Commit();
+        return Ok();
+    }
+
+    [HttpPost]
+    [Route("update/node")]
+    public async Task<IActionResult> Update([FromBody] CNote note)
+    {
+        try
+        {
+            await _noteService.UpdateNote(note);
+        }
+        catch (Exception exception)
+        {
+            return BadRequest();
+        }
+        _unitOfWork.Commit();
+
+        return Ok();
     }
 }

@@ -19,9 +19,9 @@ public class NoteRepositories : INoteRepositories
         await _notes.AddAsync(note);
     }
 
-    public async Task Delete(CNote note)
+    public async Task Delete(string id)
     {
-        _notes.Remove(note);
+        _notes.Remove(await this.Get(id));
     }
 
     public async Task<CNote> Get(string id)
@@ -34,10 +34,9 @@ public class NoteRepositories : INoteRepositories
         return await _notes.ToListAsync();
     }
 
-    public async Task Update(string id, CNote note)
+    public async Task Update(CNote note)
     {
-        //await _notes.FindAsync(id) = note;
-        //Task<CNote> entity = _notes.Find(id);
-        //await _notes.Entry(entity).CurrentValues.SetValues(note);
+        await this.Delete(note.Id);
+        await this.Add(note);
     }
 }

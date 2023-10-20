@@ -17,9 +17,9 @@ public class NoteService : INoteService
         await _apiRepositories.Add(note);
     }
 
-    public async Task DeleteNote(CNote note)
+    public async Task DeleteNote(string id)
     {
-        await _apiRepositories.Delete(note);
+        await _apiRepositories.Delete(id);
     }
 
     public async Task<CNote> GetNote(string id)
@@ -27,8 +27,8 @@ public class NoteService : INoteService
         return await _apiRepositories.Get(id);
     }
 
-    public async Task UpdateNote(string id, CNote note)
+    public async Task UpdateNote(CNote note)
     {
-        await _apiRepositories.Update(id, note);
+        await _apiRepositories.Update(note);
     }
 }
