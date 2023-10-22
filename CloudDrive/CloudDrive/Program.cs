@@ -1,5 +1,5 @@
 using Infrastructure;
-using Infrastructure.Note;
+using Infrastructure.Notes;
 using Microsoft.Extensions.Configuration;
 
 namespace CloudDrive
@@ -16,7 +16,7 @@ namespace CloudDrive
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddDatabaseFoundations();
+            builder.Services.AddDatabaseFoundations(builder.Configuration);
             builder.Services.AddNoteRepositories();
             builder.Services.AddNoteService();
 

@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Application.Foundations;
 using Infrastructure.Database;
-using Application.Note.Repositories;
-using Application.Note.Services;
-using Infrastructure.Note.Repositories;
+using Application.Notes.Repositories;
+using Application.Notes.Services;
+using Infrastructure.Notes.Repositories;
 
-namespace Infrastructure.Note;
+namespace Infrastructure.Notes;
 
 public static class ConfigureServices
 {

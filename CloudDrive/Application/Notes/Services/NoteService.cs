@@ -1,7 +1,7 @@
-﻿using Application.Note.Repositories;
+﻿using Application.Notes.Repositories;
 using Domain;
 
-namespace Application.Note.Services;
+namespace Application.Notes.Services;
 
 public class NoteService : INoteService
 {
@@ -12,7 +12,7 @@ public class NoteService : INoteService
         _apiRepositories = apiRepositories;
     }
 
-    public async Task AddNote(CNote note)
+    public async Task AddNote(Note note)
     {
         await _apiRepositories.Add(note);
     }
@@ -22,12 +22,12 @@ public class NoteService : INoteService
         await _apiRepositories.Delete(id);
     }
 
-    public async Task<CNote> GetNote(string id)
+    public async Task<Note> GetNote(string id)
     {
         return await _apiRepositories.Get(id);
     }
 
-    public async Task UpdateNote(CNote note)
+    public async Task UpdateNote(Note note)
     {
         await _apiRepositories.Update(note);
     }

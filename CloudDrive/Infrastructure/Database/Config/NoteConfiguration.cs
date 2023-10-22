@@ -10,9 +10,9 @@ using Domain;
 namespace Infrastructure.Database.Config;
 
 
-public class NoteConfiguration : IEntityTypeConfiguration<CNote>
+public class NoteConfiguration : IEntityTypeConfiguration<Note>
 {
-    public void Configure(EntityTypeBuilder<CNote> builder)
+    public void Configure(EntityTypeBuilder<Note> builder)
     {
         builder.ToTable("note");
 
@@ -21,8 +21,8 @@ public class NoteConfiguration : IEntityTypeConfiguration<CNote>
         builder.Property(jc => jc.Id)
             .HasColumnName("id");
 
-        builder.Property(jc => jc.Title)
-            .HasColumnName("title");
+        builder.Property(jc => jc.Name)
+            .HasColumnName("name");
 
         builder.Property(jc => jc.Description)
             .HasColumnName("description");
