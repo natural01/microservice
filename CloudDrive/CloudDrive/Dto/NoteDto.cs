@@ -1,7 +1,7 @@
 ﻿namespace CloudDrive.Dto;
 
-public class CreateNoteDto
+public class NoteDto
 {
-    public string Title { get; set; }
+    public string Name { get; set; }
     public string Description { get; set; }
 }

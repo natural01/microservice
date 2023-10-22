@@ -7,4 +7,5 @@ public interface INoteRepositories
     public Task Delete(string id);
     public Task Update(Note note);
     public Task<Note> Get(string id);
+    public Task<List<Note>> GetAll();
 }
