@@ -7,7 +7,7 @@ public static class NoteExtension
     public static Note ToDomain(this NoteDto note)
     {
         return new Note() { 
-            Id = 0.ToString(),
+            Id = note.Id,
             Name = note.Name,
             Description = note.Description,
         };

@@ -40,15 +40,6 @@ public class NoteController : ControllerBase
         }
 
         Note updatedNote = note.ToDomain();
-        List<Note> notesList = await _noteService.GetAll();
-        if (notesList.Count < 1)
-        {
-            updatedNote.Id = 1.ToString();
-        } else
-        {
-            int lastId = Int32.Parse(notesList[^1].Id) + 1;
-            updatedNote.Id = lastId.ToString();
-        }
 
         try
         {

@@ -31,9 +31,4 @@ public class NoteService : INoteService
     {
         await _apiRepositories.Update(note);
     }
-
-    public async Task<List<Note>> GetAll()
-    {
-        return await _apiRepositories.GetAll();         
-    }
 }

@@ -6,6 +6,9 @@ public class NoteDtoValidator : AbstractValidator<NoteDto>
 {
     public NoteDtoValidator()
     {
+        RuleFor(note => note.Id)
+            .NotEmpty();
+
         RuleFor(note => note.Name)
             .NotEmpty()
             .MaximumLength(80);
