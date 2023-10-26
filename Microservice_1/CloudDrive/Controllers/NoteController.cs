@@ -1,14 +1,14 @@
 ﻿using Application.Foundations;
 using Application.Notes.Services;
-using CloudDrive.Authentication;
-using CloudDrive.Dto;
-using CloudDrive.Utilities;
+using Microservice_1.Authentication;
+using Microservice_1.Utilities;
 using Domain;
 using FluentValidation;
 using FluentValidation.Results;
+using Microservice_1.Dto;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CloudDrive.Controllers;
+namespace Microservice_1.Controllers;
 
 [ApiController]
 [Route("api")]
@@ -19,7 +19,7 @@ public class NoteController : ControllerBase
     private readonly IUnitOfWork _unitOfWork;
     private readonly IValidator<NoteDto> _noteDtoValidator;
 
-    public NoteController(INoteService noteService, 
+    public NoteController(INoteService noteService,
         IUnitOfWork unitOfWork,
         IValidator<NoteDto> createNoteDtoValidator)
     {
@@ -65,7 +65,7 @@ public class NoteController : ControllerBase
         }
         catch (Exception exception)
         {
-             return BadRequest(new ErrorResponse(exception.Message));
+            return BadRequest(new ErrorResponse(exception.Message));
         }
     }
 
@@ -79,7 +79,7 @@ public class NoteController : ControllerBase
         }
         catch (Exception exception)
         {
-             return BadRequest(new ErrorResponse(exception.Message));
+            return BadRequest(new ErrorResponse(exception.Message));
         }
         _unitOfWork.Commit();
         return Ok();
@@ -105,7 +105,7 @@ public class NoteController : ControllerBase
         }
         catch (Exception exception)
         {
-             return BadRequest(new ErrorResponse(exception.Message));
+            return BadRequest(new ErrorResponse(exception.Message));
         }
         _unitOfWork.Commit();
 

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace CloudDrive.Dto;
+namespace Microservice_1.Dto;
 
 public class NoteDtoValidator : AbstractValidator<NoteDto>
 {

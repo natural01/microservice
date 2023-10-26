@@ -1,12 +1,12 @@
 using FluentValidation;
-using CloudDrive.Dto;
 using Infrastructure;
 using Infrastructure.Notes;
 using Microsoft.Extensions.Configuration;
-using CloudDrive.Authentication;
 using Microsoft.OpenApi.Models;
+using Microservice_1.Authentication;
+using Microservice_1.Dto;
 
-namespace CloudDrive
+namespace Microservice_1
 {
     public class Program
     {
@@ -21,12 +21,12 @@ namespace CloudDrive
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
-                c.AddSecurityDefinition("ApiKey", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
                 {
                     Description = "The Api Key to access the Api",
-                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+                    Type = SecuritySchemeType.ApiKey,
                     Name = "x-api-key",
-                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+                    In = ParameterLocation.Header,
                     Scheme = "ApiKeyScheme"
                 });
 

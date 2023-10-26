@@ -1,4 +1,4 @@
-﻿namespace CloudDrive.Authentication;
+﻿namespace Microservice_1.Authentication;
 
 public static class AuthConstants
 {

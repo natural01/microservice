@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace CloudDrive.Authentication;
+namespace Microservice_1.Authentication;
 
 public class ApiKeyAuthFilter : Attribute, IAuthorizationFilter
 {
@@ -14,9 +14,9 @@ public class ApiKeyAuthFilter : Attribute, IAuthorizationFilter
         }
 
         var configuration = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
-        var apiKey = configuration.GetSection(AuthConstants.ApiKeySectionName).Get<List<string>>();
+        var apiKeys = configuration.GetSection(AuthConstants.ApiKeySectionName).Get<List<string>>();
 
-        if (!apiKey.Contains(extractedApiKey))
+        if (!apiKeys.Contains(extractedApiKey))
         {
             context.Result = new UnauthorizedObjectResult("Invalid Api Key ");
             return;

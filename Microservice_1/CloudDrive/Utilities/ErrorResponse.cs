@@ -1,4 +1,4 @@
-﻿namespace CloudDrive.Utilities;
+﻿namespace Microservice_1.Utilities;
 
 public class ErrorResponse
 {
