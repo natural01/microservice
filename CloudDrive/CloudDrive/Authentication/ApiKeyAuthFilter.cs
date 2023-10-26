@@ -14,8 +14,9 @@ public class ApiKeyAuthFilter : Attribute, IAuthorizationFilter
         }
 
         var configuration = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
-        var apiKey = configuration.GetValue<string>(AuthConstants.ApiKeySectionName);
-        if (!apiKey.Equals(extractedApiKey))
+        var apiKey = configuration.GetSection(AuthConstants.ApiKeySectionName).Get<List<string>>();
+
+        if (!apiKey.Contains(extractedApiKey))
         {
             context.Result = new UnauthorizedObjectResult("Invalid Api Key ");
             return;
