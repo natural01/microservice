@@ -8,10 +8,10 @@ public class NoteDtoValidator : AbstractValidator<NoteDto>
     {
         RuleFor(note => note.Name)
             .NotEmpty()
-            .MaximumLength(100);
+            .MaximumLength(80);
 
         RuleFor(note => note.Description)
             .NotEmpty()
-            .MaximumLength(1000);
+            .MaximumLength(255);
     }
 }

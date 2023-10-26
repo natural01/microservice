@@ -1,6 +1,8 @@
 ﻿using Application.Foundations;
 using Application.Notes.Services;
+using CloudDrive.Authentication;
 using CloudDrive.Dto;
+using CloudDrive.Utilities;
 using Domain;
 using FluentValidation;
 using FluentValidation.Results;
@@ -10,6 +12,7 @@ namespace CloudDrive.Controllers;
 
 [ApiController]
 [Route("api")]
+[ApiKeyAuthFilter]
 public class NoteController : ControllerBase
 {
     private readonly INoteService _noteService;
@@ -33,7 +36,7 @@ public class NoteController : ControllerBase
 
         if (!validationResult.IsValid)
         {
-            return BadRequest();
+            return BadRequest(new ErrorResponse(validationResult.ToDictionary()));
         }
 
         Note updatedNote = note.ToDomain();
@@ -53,7 +56,7 @@ public class NoteController : ControllerBase
         }
         catch (Exception exception)
         {
-            return BadRequest(exception.Message);
+            return BadRequest(new ErrorResponse(exception.Message));
         }
         _unitOfWork.Commit();
 
@@ -71,7 +74,7 @@ public class NoteController : ControllerBase
         }
         catch (Exception exception)
         {
-            return BadRequest(exception.Message);
+             return BadRequest(new ErrorResponse(exception.Message));
         }
     }
 
@@ -85,7 +88,7 @@ public class NoteController : ControllerBase
         }
         catch (Exception exception)
         {
-            return BadRequest(exception.Message);
+             return BadRequest(new ErrorResponse(exception.Message));
         }
         _unitOfWork.Commit();
         return Ok();
@@ -99,7 +102,7 @@ public class NoteController : ControllerBase
 
         if (!validationResult.IsValid)
         {
-            return BadRequest();
+            return BadRequest(new ErrorResponse(validationResult.ToDictionary()));
         }
 
         Note updatedNote = note.ToDomain();
@@ -111,7 +114,7 @@ public class NoteController : ControllerBase
         }
         catch (Exception exception)
         {
-            return BadRequest(exception.Message);
+             return BadRequest(new ErrorResponse(exception.Message));
         }
         _unitOfWork.Commit();
 
